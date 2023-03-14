@@ -67,9 +67,10 @@ class CompaniesController < ApplicationController
     return redirect_to company_path(@company) if !params[:file].present?
     file = params[:file]
     return redirect_to company_path(@company), notice: 'Only xlsx please' unless file.content_type == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    ImportEmployees.new.call(file, @company)
-
-    redirect_to company_path(@company), notice: 'Employees imported!'
+    @employee_data = ImportEmployees.new.call(file, @company)
+    respond_to do |format|
+      format.js
+    end
   end
 
   private

@@ -3,6 +3,7 @@ class ImportEmployees
   require 'csv'
 
   def call(file, company)
+    employee_data = []
     spreadsheet = Roo::Spreadsheet.open(file.tempfile.path, extension: :xlsx).sheet(0)
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
@@ -13,12 +14,13 @@ class ImportEmployees
       if employee.errors.any?
         error_row = spreadsheet.row(i)
           error_row << employee.errors.full_messages.last
-        puts "-------#{error_row}"
         CSV.open('validation_error.csv', 'a+') do |csv|
           csv << error_row
         end
+      else
+        employee_data << employee
       end
     end
-
+    employee_data
   end
 end

@@ -1,0 +1,3 @@
+var noticeDiv = $("<div style='color: green'>").addClass("notice").text('Employees imported!');
+$("body").append(noticeDiv);
+$("#my_table").append("<tr><%= j render partial: "employee_table", locals: { employee_data: @employee_data } %></tr>");

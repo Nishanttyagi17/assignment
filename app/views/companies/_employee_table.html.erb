@@ -1,0 +1,11 @@
+<% employee_data.each do |employee| %>
+  <tr>
+    <td><%= employee.name %></td>
+    <td><%= employee.gender %></td>
+    <td><%= employee.email %></td>
+    <td><%= employee.age %></td>
+    <td><%= employee.contact_no %></td>
+    <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+    <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true, :class => 'delete_emp' %></td>
+  </tr>
+<% end %>

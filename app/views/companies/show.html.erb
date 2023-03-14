@@ -14,7 +14,7 @@
 
 
 <p style="color: green"><%= notice %></p>
-<table>
+<table id="my_table">
   <thead>
   <tr>
     <th>Name</th>
@@ -41,7 +41,7 @@
   </tbody>
 </table>
 </br>
-<%= form_tag import_employee_companies_path, :method => 'post', :multipart => true  do %>
+<%= form_tag import_employee_companies_path,  :remote => true, multipart: true  do %>
   <%= file_field_tag 'file', required: true, accept: ".xlsx" %>
   <%= hidden_field_tag :id, @company.id %>
 
