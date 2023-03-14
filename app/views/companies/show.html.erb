@@ -42,7 +42,7 @@
 </table>
 </br>
 <%= form_tag import_employee_companies_path, :method => 'post', :multipart => true  do %>
-  <%= file_field_tag 'file', required: true, accept: ".csv" %>
+  <%= file_field_tag 'file', required: true, accept: ".xlsx" %>
   <%= hidden_field_tag :id, @company.id %>
 
   <%= submit_tag "Import" %>
